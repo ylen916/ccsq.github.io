@@ -1,1 +1,1 @@
-# chatgpt112.github.io
+# ai.chatgpt.io
