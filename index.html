@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ChatGPT</title>
+	<style type="text/css">
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			border-radius: 5px;
+			overflow: hidden;
+		}
+		.chat-box {
+			height: 400px;
+			overflow-y: scroll;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+		.chat-message {
+			margin-bottom: 10px;
+		}
+		.chat-message .avatar {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: #ccc;
+			margin-right: 10px;
+		}
+		.chat-message .content {
+			display: inline-block;
+			padding: 5px 10px;
+			border-radius: 5px;
+			background-color: #e6e6e6;
+		}
+		.chat-message .content.user {
+			background-color: #d9edf7;
+		}
+		.chat-message .content.bot {
+			background-color: #dff0d8;
+		}
+		.input-box {
+			margin-top: 10px;
+		}
+		.input-box input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			font-size: 16px;
+			outline: none;
+		}
+		.input-box button {
+			display: inline-block;
+			padding: 10px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+		.input-box button:hover {
+			background-color: #0069d9;
+		}
+		.settings {
+			float: right;
+			margin-top: 10px;
+		}
+		.settings button {
+			display: inline-block;
+			padding: 5px 10px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			font-size: 14px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+		.settings button:hover {
+			background-color: #0069d9;
+		}
+		.modal {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			z-index: 999;
+			display: none;
+		}
+		.modal-content {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			text-align: center;
+		}
+		.modal-content h2 {
+			margin-top: 0;
+		}
+		.modal-content label {
+			display: block;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+		.modal-content input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			font-size: 16px;
+			outline: none;
+		}
+		.modal-content button {
+			display: inline-block;
+			padding: 10px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+			margin-top: 10px;
+		}
+		.modal-content button:hover {
+			background-color: #0069d9;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="chat-box" id="chat-box">
+			<div class="chat-message">
+				<div class="avatar"></div>
+				<div class="content bot">Hello, how can I help you?</div>
+			</div>
+		</div>
+		<div class="input-box">
+			<input type="text" id="input-message" placeholder="Type your message here...">
+			<button id="send-button">Send</button>
+			<div class="settings">
+				<button id="settings-button">Settings</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="settings-modal">
+		<div class="modal-content">
+			<h2>Settings</h2>
+			<label for="avatar-input">Avatar URL:</label>
+			<input type="text" id="avatar-input" placeholder="Enter avatar URL...">
+			<label for="name-input">Name:</label>
+			<input type="text" id="name-input" placeholder="Enter name...">
+			<button id="save-button">Save</button>
+			<button id="cancel-button">Cancel</button>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// Get elements
+		const chatBox = document.getElementById('chat-box');
+		const inputMessage = document.getElementById('input-message');
+		const sendButton = document.getElementById('send-button');
+		const settingsButton = document.getElementById('settings-button');
+		const settingsModal = document.getElementById('settings-modal');
+		const avatarInput = document.getElementById('avatar-input');
+		const nameInput = document.getElementById('name-input');
+		const saveButton = document.getElementById('save-button');
+		const cancelButton = document.getElementById('cancel-button');
+
+		// Settings
+		let avatarUrl = 'https://via.placeholder.com/30';
+		let name = 'User';
+
+		// Functions
+		function addMessage(content, isUser) {
+			const message = document.createElement('div');
+			message.classList.add('chat-message');
+			if (isUser) {
+				message.innerHTML = `
+					<div class="avatar" style="background-image: url(${avatarUrl});"></div>
+					<div class="content user">${content}</div>
+				`;
+			} else {
+				message.innerHTML = `
+					<div class="avatar"></div>
+					<div class="content bot">${content}</div>
+				`;
+			}
+			chatBox.appendChild(message);
+			chatBox.scrollTop = chatBox.scrollHeight;
+		}
+
+		function clearInput() {
+			inputMessage.value = '';
+		}
+
+		function openSettings() {
+			settingsModal.style.display = 'block';
+			avatarInput.value = avatarUrl;
+			nameInput.value = name;
+		}
+
+		function closeSettings() {
+			settingsModal.style.display = 'none';
+		}
+
+		function saveSettings() {
+			avatarUrl = avatarInput.value;
+			name = nameInput.value;
+			closeSettings();
+		}
+
+		// Event listeners
+		sendButton.addEventListener('click', function() {
+			const message = inputMessage.value.trim();
+			if (message) {
+				addMessage(message, true);
+				clearInput();
+				// TODO: Send message to ChatGPT and get response
+			}
+		});
+
+		inputMessage.addEventListener('keydown', function(event) {
+			if (event.key === 'Enter') {
+				sendButton.click();
+			}
+		});
+
+		settingsButton.addEventListener('click', openSettings);
+
+		cancelButton.addEventListener('click', closeSettings);
+
+		saveButton.addEventListener('click', saveSettings);
+	</script>
+</body>
+</html>
