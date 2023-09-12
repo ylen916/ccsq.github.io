@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>医院信息系统</title>
+  <style>
+    /* CSS样式可以在head标签中定义 */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .patient-list {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    .patient-list th,
+    .patient-list td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .patient-list th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>医院信息系统</h1>
+  
+  <h2>患者列表</h2>
+  <table class="patient-list">
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>张三</td>
+        <td>35岁</td>
+        <td>男</td>
+      </tr>
+      <tr>
+        <td>李四</td>
+        <td>42岁</td>
+        <td>女</td>
+      </tr>
+      <tr>
+        <td>王五</td>
+        <td>28岁</td>
+        <td>男</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h2>患者详情</h2>
+  <p><strong>姓名：</strong> 张三</p>
+  <p><strong>年龄：</strong> 35岁</p>
+  <p><strong>性别：</strong> 男</p>
+  <p><strong>诊断结果：</strong> 感冒</p>
+  
+  <h2>添加新患者</h2>
+  <form>
+    <label for="name">姓名：</label>
+    <input type="text" id="name" name="name"><br>
+    <label for="age">年龄：</label>
+    <input type="number" id="age" name="age"><br>
+    <label for="gender">性别：</label>
+    <select id="gender" name="gender">
+      <option value="male">男</option>
+      <option value="female">女</option>
+    </select><br>
+    <input type="submit" value="提交">
+  </form>
+</body>
+</html>
+
+        
