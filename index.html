@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>医院信息系统</title>
   <style>
-    /* CSS样式可以在head标签中定义 */
     body {
       font-family: Arial, sans-serif;
       background-color: #f2f2f2;
@@ -57,7 +56,6 @@
       color: #fff;
     }
     
-    /* 示例用的两个标签页的样式 */
     .tab-content {
       padding: 20px;
       display: none;
@@ -65,6 +63,47 @@
     
     .tab-content.active {
       display: block;
+    }
+    
+    .patient-list {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    .patient-list th,
+    .patient-list td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .patient-list th {
+      background-color: #f2f2f2;
+    }
+    
+    .add-patient-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .add-patient-form input[type="text"],
+    .add-patient-form input[type="number"],
+    .add-patient-form select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    
+    .add-patient-form input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #3f51b5;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -81,12 +120,14 @@
     
     <div class="tab-content active">
       <!-- 患者列表内容 -->
-      <table>
+      <table class="patient-list">
         <thead>
           <tr>
             <th>姓名</th>
             <th>年龄</th>
             <th>性别</th>
+            <th>诊断结果</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
@@ -94,16 +135,23 @@
             <td>张三</td>
             <td>35岁</td>
             <td>男</td>
+            <td>感冒</td>
+            <td><button onclick="deletePatient(1)">删除</button></td>
           </tr>
           <tr>
             <td>李四</td>
             <td>42岁</td>
             <td>女</td>
+            <td>高血压</td>
+            <td><button onclick="deletePatient(2)">删除</button></td>
           </tr>
           <tr>
             <td>王五</td>
             <td>28岁</td>
+           ```html
             <td>男</td>
+            <td>糖尿病</td>
+            <td><button onclick="deletePatient(3)">删除</button></td>
           </tr>
         </tbody>
       </table>
@@ -111,39 +159,42 @@
     
     <div class="tab-content">
       <!-- 添加患者内容 -->
-      <form>
+      <form class="add-patient-form">
         <label for="name">姓名：</label>
-        <input type="text" id="name" name="name"><br>
+        <input type="text" id="name" name="name" required><br>
         <label for="age">年龄：</label>
-        <input type="number" id="age" name="age"><br>
+        <input type="number" id="age" name="age" required><br>
         <label for="gender">性别：</label>
-        <select id="gender" name="gender">
+        <select id="gender" name="gender" required>
+          <option value="">请选择</option>
           <option value="male">男</option>
           <option value="female">女</option>
         </select><br>
+        <label for="diagnosis">诊断结果：</label>
+        <textarea id="diagnosis" name="diagnosis" required></textarea><br>
         <input type="submit" value="提交">
       </form>
     </div>
   </div>
 
   <script>
-    // JavaScript代码可以放在body标签内或外
     function switchTab(tabIndex) {
-      // 隐藏所有标签页内容
       var tabContents = document.getElementsByClassName("tab-content");
       for (var i = 0; i < tabContents.length; i++) {
         tabContents[i].classList.remove("active");
       }
-      
-      // 显示选定的标签页```html
       tabContents[tabIndex].classList.add("active");
       
-      // 切换选中状态的按钮
       var tabButtons = document.getElementsByClassName("tab-bar")[0].getElementsByTagName("button");
       for (var i = 0; i < tabButtons.length; i++) {
         tabButtons[i].classList.remove("active");
       }
       tabButtons[tabIndex].classList.add("active");
+    }
+    
+    function deletePatient(patientId) {
+      // 此处为示例，实际应与后端进行交互删除数据
+      alert("删除患者 #" + patientId);
     }
   </script>
 </body>
