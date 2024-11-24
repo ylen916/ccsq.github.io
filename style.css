@@ -1,78 +1,125 @@
+/* styles.css */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 0;
+  background-color: #ffffff;
 }
-
-.top-menu {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-}
-
-.menu-container {
-  display: none;
-  position: fixed;
-  margin: 1%;
-}
-
-.chat-window {
-  height: calc(100vh - 250px);
-  overflow-y: scroll;
-  padding: 20px;
-}
-
-.message {
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.sent {   background-color: #B2EBF2;   border-radius: 5px;   text-align: right; }
-  .received {   background-color: #E0E0E0;   border-radius: 5px;   text-align: left; }
-
-  .meta {   font-size: 12px;   color: #555;   margin-top: 10px;   text-align: right; }
-  .message-input-container {   display: flex;   justify-content: space-between;   align-items: center;   background-color: #f1f1f1;   padding: 20px; }
-#message-input {
-  flex: 1;
-  height: 40px;
-  border-radius: 5px;
-  border: none;
-  padding: 2px;
-  font-size: 16px;
-
-}
-button#menu-btn{
-  margin: 4px;
-  padding: 4px;
-  width: 80px;
-  height: 40px;
-  background-color: #31b773;
-  color: #f1f1f1;
-  size: 12px;
-  font-size: 16px;
-  font-family: sans-serif;
+.menu-close {
+  position: relative;
+  background-color: #adabab;
   border-radius: 4px;
-  border: none;
+  border: 1px solid #8a8a8a;
+}
+.floating-menu-container {
+  position: fixed;
+  float: right;
+  top: 10px;
+  right: 10px;
+  background-color: #e9dada;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  transition: opacity 0.4s ease, visibility 0.3s ease;
 }
 
-
-
-#send-btn {
-  width: 100px;
-  height: 40px;
-  background-color: #4CAF50;
+.menu-toggle {
+  background-color: transparent;
   border: none;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 5px;
   cursor: pointer;
-  margin-left: 10px;
-}.popup {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #333;
-  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  color: #356d9b;
+  transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+  color: #2f91ec;
+}
+
+.floating-menu-container .menu-content-body {
+  display: none; /* 初始隐藏 */
+  flex-direction: column;
+  align-items: flex-end;
+}
+#menu-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 20px;
+  position: relative; /* 确保菜单容器是定位上下文 */
+}
+.menu-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333333;
+  display: block;
+  margin-bottom: 1px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 14px;
+
+}
+
+.menu-item:hover {
+  background-color: #e0e0e0;
+}
+
+.popup {
+  display: none; /* 初始隐藏 */
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  border-radius: 5px;
-  display: none;
+  width: 200px; /* 弹出内容的宽度 */
+  box-sizing: border-box;
+}
+
+.popup.active {
+  display: block; /* 显示弹出页面 */
+}
+
+/* 展开动画 */
+@keyframes menuExpand {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* 当菜单展开时应用的样式 */
+.floating-menu-container.expanded {
+    background-color: #a39f9f;
+  animation: menuExpand 0.3s forwards ease-in-out;
+}
+
+.floating-menu-container.expanded .menu-content-body {
+  display: flex; /* 展开时显示菜单内容 */
+  background-color: rgb(224, 226, 226);
+}
+#menu-container-wrapper{
+  display: flex; /* 展开时显示菜单内容 */  
+  z-index: 1000;
+  background-color: rgb(104, 153, 102);
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 100px;
+  width: 20px;
+  height: 20px; /* 弹出内容的宽度 */
+  box-sizing: border-box;
 }
