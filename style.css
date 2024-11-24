@@ -1,57 +1,52 @@
-/* styles.css */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #ffffff;
+/* 样式.css */
+
+.菜单关闭{
+  位置：相对；
+  背景颜色：#adabab；
+  未知半径：4 px；
+  已知：1 px 实线#8a8a8a；
 }
-.menu-close {
-  position: relative;
-  background-color: #adabab;
-  border-radius: 4px;
-  border: 1px solid #8a8a8a;
-}
-.floating-menu-container {
-  position: fixed;
-  float: right;
-  top: 10px;
-  right: 10px;
-  background-color: #e9dada;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 10px;
-  z-index: 100099;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end; 
-  transition: opacity 0.4s ease, visibility 0.3s ease;
+.浮动菜单容器{
+  位置：固定；
+  浮动：右；
+  顶部：10像素；
+  右：10像素；
+  背景颜色：#e9dada；
+  盒子阴影：0  4 px  12 px  rgba ( 0 , 0 , 0 , 0.1 ) ;
+  边框半径：8 px；
+  内边距：10像素；
+  z 索引：100099；
+  显示：柔性；
+  flex-direction: column
+  对齐项目：弹性端
+  过渡：不透明度0.4s 缓动，可见性 0.3s 缓动；
 }
 
-.menu-toggle {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 5px;
-  color: #356d9b;
-  transition: color 0.3s ease;
+.菜单切换{
+  背景颜色：透明；
+  认识：无；
+  目标：指针；
+  字体大小：16像素；
+  字体粗细：粗体；
+  内边距：5像素；
+  颜色：#356d9b；
+  过渡：颜色 0.3 s 缓和；
 }
 
-.menu-toggle:hover {
-  color: #2f91ec;
+.menu-toggle:悬停 {
+  颜色：#2f91ec；
 }
 
 .floating-menu-container .menu-content-body {
-  display: none; /* 初始隐藏 */
-  flex-direction: column;
-  align-items: flex-end;
+  显示：无；/* 初始隐藏 */
+  弯曲方向：列；
+  对齐项目：弹性结束；
 }
-#menu-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 20px;
+#菜单容器{
+  显示：网格；
+  网格模板列：重复( 3 , 1 fr )；
+  间隙：10像素；
+  内边距：20像素；
   position: relative; /* 确保菜单容器是定位上下文 */
 }
 .menu-item {
@@ -105,7 +100,7 @@ body {
 /* 当菜单展开时应用的样式 */
 .floating-menu-container.expanded {
     背景颜色：#a39f9f；
-  动画：menuExpand  0.3 s 向前缓入 缓出；
+  动画：menuExpand 0.3 s 向前缓入 缓出；
 }
 
 .floating-menu-container.expanded .menu-content-body {
@@ -114,12 +109,12 @@ body {
 }
 {
   显示：柔性；/* 展开时显示菜单内容 */  
-  z 索引：100099；
+  z 指数：100099；
   背景颜色：rgb （104、153、102 ）；​​​
-  边框：1 px 实线#ccc；
-  盒子阴影：0  2 px  10 px  rgba ( 0 , 0 , 0 , 0.1 ) ;
+  姓名：1 px 实线#ccc；
+  盒子宽度：0 2 px 10 px rgba ( 0 , 0 , 0 , 0.1 ) ;
   内边距：100像素；
   宽度：20像素；
   高度：20像素；/* 弹出内容的宽度 */
-  框大小：边框框；
+  框大小： 已知框；
 }
