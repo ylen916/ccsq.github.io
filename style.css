@@ -20,7 +20,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 10px;
-  z-index: 1000;
+  z-index: 100099;
   display: flex;
   flex-direction: column;
   align-items: flex-end; 
@@ -66,60 +66,60 @@ body {
   padding: 8px 10px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: 14px;
+  字体大小：14 px；
 
 }
 
-.menu-item:hover {
-  background-color: #e0e0e0;
+.menu-item：悬停 {
+  背景颜色：#e0e0e0；
 }
 
-.popup {
-  display: none; /* 初始隐藏 */
-  position: absolute;
-  z-index: 1000;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  width: 200px; /* 弹出内容的宽度 */
-  box-sizing: border-box;
+。弹出窗口{
+  显示：无；/* 初始隐藏 */
+  位置：绝对；
+  z 索引：100099；
+  背景颜色：白色；
+  边框：1 px 实线#ccc；
+  盒子阴影：0  2 px  10 px  rgba ( 0 , 0 , 0 , 0.1 ) ;
+  内边距：10像素；
+  宽度：200像素；/* 弹出内容的宽度 */
+  框大小：边框框；
 }
 
 .popup.active {
-  display: block; /* 显示弹出页面 */
+  显示：块；/* 显示弹出页面 */
 }
 
 /* 展开动画 */
-@keyframes menuExpand {
-  0% {
-    opacity: 0;
-    visibility: hidden;
+@keyframes菜单展开{
+  0 %  {
+    不透明度：0；
+    可见性：隐藏；
   }
-  100% {
-    opacity: 1;
-    visibility: visible;
+  100 %  {
+    不透明度：1；
+    可见性：可见；
   }
 }
 
 /* 当菜单展开时应用的样式 */
 .floating-menu-container.expanded {
-    background-color: #a39f9f;
-  animation: menuExpand 0.3s forwards ease-in-out;
+    背景颜色：#a39f9f；
+  动画：menuExpand  0.3 s 向前缓入 缓出；
 }
 
 .floating-menu-container.expanded .menu-content-body {
-  display: flex; /* 展开时显示菜单内容 */
-  background-color: rgb(224, 226, 226);
+  显示：柔性；/* 展开时显示菜单内容 */
+  背景颜色：rgb （224、226、226 ）；​​​
 }
-#menu-container-wrapper{
-  display: flex; /* 展开时显示菜单内容 */  
-  z-index: 1000;
-  background-color: rgb(104, 153, 102);
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 100px;
-  width: 20px;
-  height: 20px; /* 弹出内容的宽度 */
-  box-sizing: border-box;
+{
+  显示：柔性；/* 展开时显示菜单内容 */  
+  z 索引：100099；
+  背景颜色：rgb （104、153、102 ）；​​​
+  边框：1 px 实线#ccc；
+  盒子阴影：0  2 px  10 px  rgba ( 0 , 0 , 0 , 0.1 ) ;
+  内边距：100像素；
+  宽度：20像素；
+  高度：20像素；/* 弹出内容的宽度 */
+  框大小：边框框；
 }
