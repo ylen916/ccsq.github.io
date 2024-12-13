@@ -1,3 +1,4 @@
-Ent.fun1=function(){
+var Ent={};
+  Ent.fun1=function(){
   alert("主函数1")
 }
